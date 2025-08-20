@@ -1,0 +1,16 @@
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\Tester.exe.config
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\Tester.exe
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\Tester.pdb
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\DataConcentrator.dll
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\PLCSimulator.dll
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\ScadaGUI.exe
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\DataConcentrator.pdb
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\PLCSimulator.pdb
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\ScadaGUI.pdb
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\bin\Debug\ScadaGUI.exe.config
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\obj\Debug\Tester.csproj.AssemblyReference.cache
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\obj\Debug\Tester.csproj.CoreCompileInputs.cache
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\obj\Debug\Tester.csproj.Up2Date
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\obj\Debug\Tester.exe
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\obj\Debug\Tester.pdb
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\Tester\obj\Debug\Tester.exe.config

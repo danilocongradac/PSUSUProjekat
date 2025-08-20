@@ -1,0 +1,15 @@
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\bin\Debug\ScadaGUI.exe.config
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\bin\Debug\ScadaGUI.exe
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\bin\Debug\ScadaGUI.pdb
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI.csproj.AssemblyReference.cache
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\MainWindow.g.cs
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\App.g.cs
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI_MarkupCompile.cache
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI_MarkupCompile.lref
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\MainWindow.baml
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI.g.resources
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI.Properties.Resources.resources
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI.csproj.GenerateResource.cache
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI.csproj.CoreCompileInputs.cache
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI.exe
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI.pdb
