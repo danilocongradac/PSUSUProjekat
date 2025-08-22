@@ -1,1 +1,13 @@
 .vs/
+DataConcentrator/bin
+DataConcentrator/obj
+DataConcentrator/Properties
+DataConcentrator.csproj
+PLCSimulator/bin
+PLCSimulator/obj
+PLCSimulator/Properties
+PLCSimulator.csproj
+ScadaGUI/bin
+ScadaGUI/obj
+ScadaGUI/Properties
+ScadaGUI.csproj

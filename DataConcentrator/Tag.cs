@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace DataConcentrator
@@ -13,16 +16,41 @@ namespace DataConcentrator
         AI,
         AO
     }
+    public enum TagProperty
+    {
+        scantime,
+        onoffscan,
+        lowlimit,
+        highlimit,
+        units,
+        initialvalue
+    }
 
     public class Tag
     {
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public string IOAddress { get; private set; }
-        public TagType Type { get; private set; }
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string IOAddress { get; set; }
+        public TagType Type { get; set; }
+        public List<Alarm> Alarms { get; set; }
+        public double Value { get; set; }
+        
+        [NotMapped]
+        public Dictionary<TagProperty, object> ExtraProperties { get; set; }
 
-        public Dictionary<string, object> ExtraProperties { get; set; }
+        [Column("ExtraProperties")]
+        public string ExtraPropertiesJson
+        {
+            get => JsonSerializer.Serialize(ExtraProperties);
+            set => ExtraProperties = string.IsNullOrEmpty(value)
+                ? new Dictionary<TagProperty, object>()
+                : JsonSerializer.Deserialize<Dictionary<TagProperty, object>>(value);
+        }
 
+
+        public Tag() { }
         public Tag(string name, string description, string ioAddress, TagType type)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -34,36 +62,76 @@ namespace DataConcentrator
             Description = description;
             IOAddress = ioAddress;
             Type = type;
-            ExtraProperties = new Dictionary<string, object>();
+            ExtraProperties = new Dictionary<TagProperty, object>();
+            Alarms = new List<Alarm>();
+            Value = 0;
         }
 
-        public void AddProperty(string key, object value)
+       
+        public void AddProperty(TagProperty key, object value)
         {
-            switch (key)
+
+            if (key == TagProperty.scantime || key == TagProperty.onoffscan)
             {
-                case "scantime":
-                case "onoffscan":
-                    if (Type == TagType.DO || Type == TagType.AO)
-                        throw new Exception($"{key} is allowed only for input tags (DI, AI).");
-                    break;
+                if (Type == TagType.DO || Type == TagType.AO)
+                    throw new Exception($"{key} is allowed only for input tags (DI, AI).");
+            }
 
-                case "lowlimit":
-                case "highlimit":
-                case "units":
-                    if (Type == TagType.DO || Type == TagType.DI)
-                        throw new Exception($"{key} is allowed only for analog tags (AI, AO).");
-                    break;
+            if (key == TagProperty.lowlimit || key == TagProperty.highlimit || key == TagProperty.units)
+            {
+                if (Type == TagType.DO || Type == TagType.DI)
+                    throw new Exception($"{key} is allowed only for analog tags (AI, AO).");
+            }
 
-                case "initialvalue":
-                    if (Type == TagType.DI && Type == TagType.AI)
-                        throw new Exception($"{key} is allowed only for output tags (DO, AO).");
-                    break;
-
-                default:
-                    throw new Exception($"Property {key} is not supported.");
+            if (key == TagProperty.initialvalue)
+            {
+                if (Type == TagType.DI || Type == TagType.AI)
+                    throw new Exception($"{key} is allowed only for output tags (DO, AO).");
             }
 
             ExtraProperties[key] = value;
+        }
+
+        
+
+        public void EnableScan()
+        {
+            if (!(bool)ExtraProperties[TagProperty.onoffscan])
+            {
+                ExtraProperties[TagProperty.onoffscan] = true;
+            }
+        }
+        public void DisableScan()
+        {
+            if ((bool)ExtraProperties[TagProperty.onoffscan])
+            {
+                ExtraProperties[TagProperty.onoffscan] = false;
+            }
+        }
+
+        public void WriteValue(object value)
+        {
+            if (Type == TagType.DO || Type == TagType.AO)
+            {
+                Value = Convert.ToDouble(value);
+            }
+            else
+            {
+                Console.WriteLine("Cant write to Input Type Tags");
+            }
+        }
+
+        public void addAlarm(Alarm alarm)
+        {
+            if (Type == TagType.AI)
+            {
+                Alarms.Add(alarm);
+            }
+        }
+
+        public void removeAlarm(Alarm alarm)
+        {
+            Alarms.Remove(alarm);
         }
 
         public override string ToString()
@@ -79,9 +147,10 @@ namespace DataConcentrator
                 props = props.Substring(0, props.Length - 2);
             }
 
-            return $"{Name} ({Type}) - {Description}, I/O: {IOAddress}" +
+            return $"{Name} ({Type}) - {Description}, I/O: {IOAddress}, Value: {Value}" +
                    (props != "" ? $", Properties: {props}" : "");
         }
+
 
     }
 }
