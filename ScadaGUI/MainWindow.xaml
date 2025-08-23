@@ -1,85 +1,35 @@
 ﻿<Window x:Class="ScadaGUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SCADA" Height="700" Width="1000">
-    <Grid>
+        Title="SCADA - Main" Height="700" Width="1000">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="2*"/>
-            <!-- Gornji deo: dodavanje / detalji -->
-            <RowDefinition Height="*"/>
-            <!-- Donji deo: aktivni alarmi i logovi -->
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <!-- Leva strana: tagovi -->
-            <ColumnDefinition Width="3*"/>
-            <!-- Desna strana: detalji -->
-        </Grid.ColumnDefinitions>
 
-        <!-- LEVA STRANA: Dodavanje / lista tagova -->
-        <StackPanel Grid.Row="0" Grid.Column="0" Margin="10">
-            <TextBlock Text="Dodaj Novi Tag" FontWeight="Bold" FontSize="16"/>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Lista Tagova" FontWeight="Bold" FontSize="16" Margin="0,0,0,5"/>
 
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="Ime:" Width="80"/>
-                <TextBox x:Name="txtTagName" Width="150"/>
+            <DataGrid x:Name="dgTags" AutoGenerateColumns="False" Height="350" CanUserAddRows="False" 
+                      IsReadOnly="True" SelectionMode="Single" MouseDoubleClick="dgTags_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tip" Binding="{Binding Type}" Width="*"/>
+                    <DataGridTextColumn Header="Ime" Binding="{Binding Name}" Width="2*"/>
+                    <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="4*"/>
+                    <DataGridTextColumn Header="IO Adresa" Binding="{Binding IOAddress}" Width="*"/>
+                    <DataGridTextColumn Header="Vrednost" Binding="{Binding Value}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Button Content="Dodaj Tag" Width="100" Margin="0,0,10,0" Click="btnAddTag_Click"/>
+                <Button Content="Obriši Tag" Width="100" Click="btnDeleteTag_Click"/>
             </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="Tip:" Width="80"/>
-                <ComboBox x:Name="cmbTagType" Width="150">
-                    <ComboBoxItem Content="DI"/>
-                    <ComboBoxItem Content="DO"/>
-                    <ComboBoxItem Content="AI"/>
-                    <ComboBoxItem Content="AO"/>
-                </ComboBox>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="Opis:" Width="80"/>
-                <TextBox x:Name="txtDescription" Width="150"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="I/O Adresa:" Width="80"/>
-                <TextBox x:Name="txtIOAddress" Width="150"/>
-            </StackPanel>
-
-            <Button x:Name="btnAddTag" Content="Dodaj Tag" Width="150" Margin="0,10" Click="btnAddTag_Click"/>
-
-            <TextBlock Text="Lista Tagova" FontWeight="Bold" Margin="0,20,0,5"/>
-            <ListBox x:Name="lstTags" Height="200" SelectionChanged="lstTags_SelectionChanged"/>
         </StackPanel>
 
-        <!-- DESNA STRANA: Detalji i alarmi -->
-        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
-            <TextBlock Text="Detalji o Tagu / Upravljanje Alarmima" FontWeight="Bold" FontSize="16"/>
-
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="Vrednost:" Width="80"/>
-                <TextBox x:Name="txtTagValue" Width="150"/>
-                <Button Content="Upiši vrednost" Margin="10,0,0,0" Click="btnWriteValue_Click"/>
-            </StackPanel>
-
-            <TextBlock Text="Alarmi" FontWeight="Bold" Margin="0,20,0,5"/>
-            <ListBox x:Name="lstAlarms" Height="150"/>
-
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBox x:Name="txtAlarmLimit" Width="80" />
-                <ComboBox x:Name="cbAlarmType" Width="80">
-                    <ComboBoxItem Content="Above"/>
-                    <ComboBoxItem Content="Below"/>
-                </ComboBox>
-                <TextBox x:Name="txtAlarmMessage" Width="150" />
-                <Button Content="Dodaj Alarm" Margin="10,0,0,0" Click="btnAddAlarm_Click"/>
-            </StackPanel>
-
-            <Button Content="Obriši Tag" Width="150" Margin="0,10,0,0" Click="btnDeleteTag_Click"/>
-        </StackPanel>
-
-        <!-- DONJI DEO: Aktivni alarmi i logovi -->
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">
-            <TextBlock Text="Aktivni Alarmi / Logovi" FontWeight="Bold" FontSize="16"/>
+        <StackPanel Grid.Row="1" Margin="0,-10,0,0">
+            <TextBlock Text="Aktivni Alarmi / Logovi" FontWeight="Bold" FontSize="16" Margin="0,0,0,5"/>
             <ListBox x:Name="lstLogs" Height="200"/>
         </StackPanel>
     </Grid>

@@ -41,3 +41,7 @@ C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\bin\Debug\Microsoft.Bcl.
 C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\bin\Debug\System.Buffers.xml
 C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\ScadaGUI.csproj.Up2Date
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\AddTagWindow.baml
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\TagDetailsWindow.baml
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\AddTagWindow.g.cs
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\ScadaGUI\obj\Debug\TagDetailsWindow.g.cs

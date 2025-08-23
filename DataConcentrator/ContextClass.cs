@@ -21,15 +21,15 @@ namespace DataConcentrator
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Relacija Tag → Alarms
             modelBuilder.Entity<Tag>()
                 .HasMany(t => t.Alarms)
-                .WithOptional()
-                .WillCascadeOnDelete(true);
+                .WithRequired(a => a.Tag)  
+                .HasForeignKey(a => a.TagId)
+                .WillCascadeOnDelete(false); 
 
-           
             base.OnModelCreating(modelBuilder);
         }
+
     }
 
 }
