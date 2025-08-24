@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|c:\\users\\danilo\\documents\\github\\psusuprojekat\\scadagui\\tagdetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|solutionrelative:scadagui\\tagdetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|c:\\users\\danilo\\documents\\github\\psusuprojekat\\scadagui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|solutionrelative:scadagui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|c:\\users\\danilo\\documents\\github\\psusuprojekat\\scadagui\\tagdetailswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|solutionrelative:scadagui\\tagdetailswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{024884F0-496F-4426-A0CE-45FF39AE24A6}|DataConcentrator\\DataConcentrator.csproj|c:\\users\\danilo\\documents\\github\\psusuprojekat\\dataconcentrator\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{024884F0-496F-4426-A0CE-45FF39AE24A6}|DataConcentrator\\DataConcentrator.csproj|solutionrelative:dataconcentrator\\tag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,26 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TagDetailsWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\TagDetailsWindow.xaml",
-              "RelativeDocumentMoniker": "ScadaGUI\\TagDetailsWindow.xaml",
-              "ToolTip": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\TagDetailsWindow.xaml",
-              "RelativeToolTip": "ScadaGUI\\TagDetailsWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-23T13:13:36.486Z",
+              "Title": "Tag.cs",
+              "DocumentMoniker": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\DataConcentrator\\Tag.cs",
+              "RelativeDocumentMoniker": "DataConcentrator\\Tag.cs",
+              "ToolTip": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\DataConcentrator\\Tag.cs",
+              "RelativeToolTip": "DataConcentrator\\Tag.cs",
+              "ViewState": "AgIAALgAAAAAAAAAAAAQwNMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-24T14:35:26.313Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TagDetailsWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\TagDetailsWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ScadaGUI\\TagDetailsWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\TagDetailsWindow.xaml.cs",
-              "RelativeToolTip": "ScadaGUI\\TagDetailsWindow.xaml.cs",
-              "ViewState": "AgIAAPQAAAAAAAAAAAAswP8AAAAlAAAAAAAAAA==",
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ScadaGUI\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\MainWindow.xaml.cs",
+              "RelativeToolTip": "ScadaGUI\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAhwIAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-23T13:13:11.923Z",
+              "WhenOpened": "2025-08-24T14:21:10.106Z",
               "EditorCaption": ""
             }
           ]

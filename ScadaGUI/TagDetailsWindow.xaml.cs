@@ -175,7 +175,7 @@ namespace ScadaGUI
                 MessageBox.Show("Ne možete da upišete vrednost u input tag!");
                 return;
             }
-
+            
             object value = txtNewValue.Text;
             if (!double.TryParse(Convert.ToString(value), out double dvalue))
             {
