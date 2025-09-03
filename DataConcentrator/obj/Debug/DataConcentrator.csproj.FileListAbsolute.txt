@@ -30,3 +30,5 @@ C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\DataConcentrator\bin\Debug\System
 C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\DataConcentrator\bin\Debug\System.Text.Json.xml
 C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\DataConcentrator\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\DataConcentrator\bin\Debug\System.ValueTuple.xml
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\DataConcentrator\bin\Debug\PLCSimulator.dll
+C:\Users\Danilo\Documents\GitHub\PSUSUProjekat\DataConcentrator\bin\Debug\PLCSimulator.pdb

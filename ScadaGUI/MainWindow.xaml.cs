@@ -1,4 +1,5 @@
 ﻿using DataConcentrator;
+using PLCSimulator;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ namespace ScadaGUI
     {
         private ObservableCollection<Tag> tags = new ObservableCollection<Tag>();
         private ObservableCollection<ActivatedAlarm> activeAlarms = new ObservableCollection<ActivatedAlarm>();
+        private PLC plcWindow;
 
         private Tag selectedTag;
         private DataConcentrator.DataConcentrator concentrator;
@@ -21,6 +23,7 @@ namespace ScadaGUI
             InitializeDataBase();
             LoadTagsFromDatabase();
             LoadAlarmsFromDatabase();
+          
 
             concentrator = new DataConcentrator.DataConcentrator();
             concentrator.AlarmOccurred += onAlarmOccurred;
@@ -29,6 +32,8 @@ namespace ScadaGUI
             dgLogs.ItemsSource = activeAlarms;
             dgTags.ItemsSource = tags;
 
+            plcWindow = new PLC();
+            plcWindow.Show();
         }
 
         private void InitializeDataBase()
@@ -43,10 +48,12 @@ namespace ScadaGUI
         {
             using (var db = new ContextClass())
             {
-                var sortedTags = db.Tags.ToList()
+                var sortedTags = db.Tags
+                    .AsNoTracking()
                     .OrderBy(t => t.Type == TagType.DI ? 0 :
                                   t.Type == TagType.DO ? 1 :
-                                  t.Type == TagType.AI ? 2 : 3);
+                                  t.Type == TagType.AI ? 2 : 3)
+                    .ToList();
 
                 tags.Clear();                          
                 foreach (var tag in sortedTags)
@@ -61,6 +68,7 @@ namespace ScadaGUI
             using (var db = new ContextClass())
             {
                 var sortedAlarms = db.ActivatedAlarms.ToList()
+                    .Where(a => a.Active)
                     .OrderBy(a => a.Timestamp);
 
                 activeAlarms = new ObservableCollection<ActivatedAlarm>(sortedAlarms);
@@ -117,43 +125,20 @@ namespace ScadaGUI
         }
 
         private void onAlarmOccurred(object sender, ActivatedAlarm e)
-        {        
-            activeAlarms.Add(e);
-            dgLogs.ItemsSource = activeAlarms;
+        {
+            Application.Current.Dispatcher.Invoke(() => {
+                activeAlarms.Add(e);
+            });
         }
-
         private void onValueChanged(object sender, EventArgs args)
         {
-            LoadTagsFromDatabase();
-            dgTags.Items.Refresh();
+            Application.Current.Dispatcher.Invoke(() => {  
+                LoadTagsFromDatabase();
+                dgTags.ItemsSource = null;
+                dgTags.ItemsSource = tags;
+            });
         }
 
-        private void btnTestAlarm_Click(object sender, RoutedEventArgs e)
-        {
-            using (var db = new ContextClass())
-            {
-                var tag = db.Tags.Include("Alarms").FirstOrDefault();
-                if (tag == null)
-                {
-                    MessageBox.Show("Nema tagova u bazi!");
-                    return;
-                }
-
-                var alarm = tag.Alarms.FirstOrDefault();
-                if (alarm == null)
-                {
-                    MessageBox.Show("Nema alarma za izabrani tag!");
-                    return;
-                }
-
-                double testValue = alarm.Type == AlarmType.Above
-                    ? alarm.Limit + 10   
-                    : alarm.Limit - 10;  
-
-                concentrator.UpdateTagValue(tag, testValue);
-                MessageBox.Show($"Test vrednost {testValue} poslata za tag {tag.Name}");
-            }
-        }
 
         private void btnAckAlarm_Click(object sender, RoutedEventArgs e)
         {
@@ -167,16 +152,16 @@ namespace ScadaGUI
                         var alarm = db.ActivatedAlarms.Find(alarmToAck.Id);
                         if (alarm != null)
                         {
-                            db.ActivatedAlarms.Remove(alarm);
+                            alarm.Active = false;
                             db.SaveChanges();
                         }
                     }
 
-                    activeAlarms.Remove(alarmToAck);
+                    LoadAlarmsFromDatabase();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Greška pri brisanju alarma: {ex.Message}");
+                    MessageBox.Show($"Greška pri potvrdi alarma: {ex.Message}");
                 }
             }
         }

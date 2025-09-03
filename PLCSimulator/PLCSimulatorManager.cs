@@ -12,12 +12,12 @@ namespace PLCSimulator
     /// 
     /// 4 x ANALOG INPUT : ADDR001 - ADDR004
     /// 4 x ANALOG OUTPUT: ADDR005 - ADDR008
-    /// 1 x DIGITAL INPUT: ADDR009
-    /// 1 x DIGITAL OUTPUT: ADDR010
+    /// 4 x DIGITAL INPUT: ADDR009 - ADDR012
+    /// 4 x DIGITAL OUTPUT: ADDR013 - ADDR016
     /// </summary>
     public class PLCSimulatorManager
     {
-        private Dictionary<string, double> addressValues;
+        private Dictionary<string, double> addressValues; 
         private object locker = new object();
         private Thread t1;
         private Thread t2;
@@ -41,10 +41,16 @@ namespace PLCSimulator
             // DI
             // TODO: dodati jos nekoliko adresa za DI (recimo po 4 za svaku vrstu tagova)
             addressValues.Add("ADDR009", 0);
+            addressValues.Add("ADDR010", 0);
+            addressValues.Add("ADDR011", 0);
+            addressValues.Add("ADDR012", 0);
 
             // DO
-            // TODO: dodati jos nekoliko adresa za DI (recimo po 4 za svaku vrstu tagova)
-            addressValues.Add("ADDR010", 0);
+            // TODO: dodati jos nekoliko adresa za DO (recimo po 4 za svaku vrstu tagova)
+            addressValues.Add("ADDR013", 0);
+            addressValues.Add("ADDR014", 0);
+            addressValues.Add("ADDR015", 0);
+            addressValues.Add("ADDR016", 0);
         }
 
         public void StartPLCSimulator()
@@ -80,44 +86,40 @@ namespace PLCSimulator
 
                 lock (locker)
                 {
-                    if (addressValues["ADDR009"] == 0)
-                    {
-                        addressValues["ADDR009"] = 1;
-                    }
-                    else
-                    {
-                        addressValues["ADDR009"] = 0;
-                    }
+                    addressValues["ADDR009"] = addressValues["ADDR009"] == 1 ? 0 : 1; // Naizmenicno paljenje i gasenje
+                    addressValues["ADDR010"] = RandomNumberBetween(0, 50) >= 10 ? 1 : 0; // Random paljenje i gasenje
+                    addressValues["ADDR011"] = DateTime.Now.Minute%3==0 ? 0 : 1; // Svaki treci minut upaljen, inace ugasen
+                    addressValues["ADDR012"] = (DateTime.Now.Hour >= 8 && DateTime.Now.Hour < 16)? 1 : 0; // radno vreme
                 }
             }
         }
 
-        public double GetAnalogValue(string address)
+        public double GetValue(string address)
         {
-
-            if (addressValues.ContainsKey(address))
-            {
-                return addressValues[address];
-            }
-            else
-            {
-                return -1;
-            }
-        }
-
-        public void SetAnalogValue(string address, double value)
-        {
-            if (addressValues.ContainsKey(address))
-            {
-                addressValues[address] = value;
+            lock(locker) {
+                if (addressValues.ContainsKey(address))
+                {
+                    return addressValues[address];
+                }
+                else
+                {
+                    return -1;
+                }
             }
         }
 
-        public void SetDigitalValue(string address, double value)
+        public void SetValue(string address, double value)
         {
-            if (addressValues.ContainsKey(address))
+            lock (locker)
             {
-                addressValues[address] = value;
+                if (addressValues.ContainsKey(address))
+                {
+                    addressValues[address] = value;
+                }
+                else
+                {
+                    throw new Exception("Ne radi ovde");
+                }
             }
         }
 

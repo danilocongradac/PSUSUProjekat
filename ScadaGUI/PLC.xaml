@@ -1,0 +1,39 @@
+﻿<Window x:Class="ScadaGUI.PLC"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PLC Simulator" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Dugmad -->
+            <RowDefinition Height="*"/>
+            <!-- Tabela -->
+            <RowDefinition Height="Auto"/>
+            <!-- Status -->
+        </Grid.RowDefinitions>
+
+        <!-- Dugmad Start/Stop -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
+            <Button x:Name="btnStart" Content="Start" Width="80" Margin="5" Click="btnStart_Click"/>
+            <Button x:Name="btnStop" Content="Stop" Width="80" Margin="5" Click="btnStop_Click"/>
+        </StackPanel>
+
+        <!-- Tabela sa adresama i vrednostima -->
+        <DataGrid x:Name="dgValues" Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Address" Binding="{Binding Key}" Width="*"/>
+                <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
+               
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Status teksta -->
+        <TextBlock x:Name="txtStatus" Grid.Row="2"
+                   Text="Status: Stopped"
+                   HorizontalAlignment="Center"
+                   Margin="0 10 0 0"
+                   FontWeight="Bold"/>
+    </Grid>
+</Window>

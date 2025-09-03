@@ -19,11 +19,13 @@ namespace DataConcentrator
         public double Value { get; set; }
         public double Limit { get; set; }
         public string Message { get; set; }
+        public bool Active { get; set; }
 
         public ActivatedAlarm() { }
 
         public ActivatedAlarm(Alarm alarm, string tagName)
         {
+            Active = true;
             Alarm = alarm;
             AlarmId = alarm.Id;
             TagName = tagName;

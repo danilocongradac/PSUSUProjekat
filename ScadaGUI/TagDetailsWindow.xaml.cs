@@ -16,10 +16,11 @@ namespace ScadaGUI
         private Tag selectedTag;
         private Alarm selectedAlarm;
 
-
+        private DataConcentrator.DataConcentrator DC;
         public TagDetailsWindow(Tag tag)
         {
             InitializeComponent();
+            DC = new DataConcentrator.DataConcentrator();
 
             using (var db = new ContextClass())
             {
@@ -58,6 +59,8 @@ namespace ScadaGUI
             panelInputProps.Visibility = Visibility.Collapsed;
             panelAnalogProps.Visibility = Visibility.Collapsed;
             panelOutputProps.Visibility = Visibility.Collapsed;
+            forceValue.Visibility = Visibility.Collapsed;
+
 
             if (selectedTag.Type == TagType.DI || selectedTag.Type == TagType.AI)
             {
@@ -87,6 +90,8 @@ namespace ScadaGUI
             if (selectedTag.Type == TagType.DO || selectedTag.Type == TagType.AO)
             {
                 panelOutputProps.Visibility = Visibility.Visible;
+                forceValue.Visibility = Visibility.Visible;
+
 
                 if (selectedTag.ExtraProperties.TryGetValue(DataConcentrator.TagProperty.initialvalue, out object iv))
                     txtInitialValue.Text = GetValueAsString(iv);
@@ -189,8 +194,7 @@ namespace ScadaGUI
                 return;
             }
 
-            selectedTag.WriteValue(value);
-            updateTagInDB(selectedTag);
+            DC.ForceTagValue(selectedTag, value);
 
             MessageBox.Show($"Vrednost taga {selectedTag.Name} je ažurirana na {value}");
             txtTagInfo.Text = $"Tag: {selectedTag.Name} ({selectedTag.Type}) - {selectedTag.Description}, IO: {selectedTag.IOAddress}, Vrednost: {selectedTag.Value}";
