@@ -15,12 +15,11 @@ namespace ScadaGUI
     {
         private Tag selectedTag;
         private Alarm selectedAlarm;
-
         private DataConcentrator.DataConcentrator DC;
         public TagDetailsWindow(Tag tag)
         {
             InitializeComponent();
-            DC = new DataConcentrator.DataConcentrator();
+            DC = MainWindow.concentrator;
 
             using (var db = new ContextClass())
             {

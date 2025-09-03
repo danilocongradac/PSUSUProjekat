@@ -14,7 +14,7 @@ namespace DataConcentrator
     {
         public event EventHandler<ActivatedAlarm> AlarmOccurred;
         public event EventHandler ValueChanged;
-        private PLCSimulatorManager PLC;
+        public static PLCSimulatorManager PLC;
 
 
         public DataConcentrator() {
@@ -79,6 +79,17 @@ namespace DataConcentrator
                 db.SaveChanges();
             }
             
+            ValueChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void addTag(Tag tag)
+        {
+            using (var db = new ContextClass())
+            {
+                db.Tags.AddOrUpdate(tag);
+                db.SaveChanges();
+            }
+
             ValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }

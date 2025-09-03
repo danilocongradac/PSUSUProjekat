@@ -78,20 +78,15 @@ namespace ScadaGUI
                             newTag.ExtraProperties[DataConcentrator.TagProperty.initialvalue] = 0;
                             MessageBox.Show("Vrednost DO taga moze biti samo 0 ili 1, postavljenjo na 0");
                         } 
-                        else { 
-                            newTag.Value = Convert.ToDouble(txtInitialValue.Text); 
+                        else {
+                            MainWindow.concentrator.ForceTagValue(newTag, Convert.ToDouble(txtInitialValue.Text));
                         }
                     }
 
 
                 }
 
-                // Snimanje u bazu
-                using (var db = new ContextClass())
-                {
-                    db.Tags.Add(newTag);
-                    db.SaveChanges();
-                }
+                MainWindow.concentrator.addTag(newTag);
 
                 this.DialogResult = true; 
                 this.Close();

@@ -15,15 +15,16 @@ namespace ScadaGUI
         private PLC plcWindow;
 
         private Tag selectedTag;
-        private DataConcentrator.DataConcentrator concentrator;
+        public static DataConcentrator.DataConcentrator concentrator;
 
         public MainWindow()
         {
+           
+
             InitializeComponent();
             InitializeDataBase();
             LoadTagsFromDatabase();
             LoadAlarmsFromDatabase();
-          
 
             concentrator = new DataConcentrator.DataConcentrator();
             concentrator.AlarmOccurred += onAlarmOccurred;
@@ -34,6 +35,8 @@ namespace ScadaGUI
 
             plcWindow = new PLC();
             plcWindow.Show();
+
+            InitialWriteToPLC();
         }
 
         private void InitializeDataBase()
@@ -61,6 +64,26 @@ namespace ScadaGUI
                     tags.Add(tag);                     
                 }
             }
+        }
+
+        private void InitialWriteToPLC()
+        {
+            using (var db = new ContextClass())
+            {
+                var sortedTags = db.Tags
+                    .AsNoTracking()                    
+                    .ToList();
+
+                foreach (var tag in sortedTags)
+                {
+                    if (tag.Type == TagType.DO || tag.Type == TagType.AO)
+                    {
+                        concentrator.ForceTagValue(tag, tag.Value);
+                    }
+                   
+                }
+            }
+
         }
 
         private void LoadAlarmsFromDatabase()

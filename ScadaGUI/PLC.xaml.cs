@@ -10,13 +10,12 @@ namespace ScadaGUI
     {
         private PLCSimulatorManager plc;
         private DispatcherTimer timer;
-
+ 
         public PLC()
         {
             InitializeComponent();
 
-            plc = new PLCSimulatorManager();
-
+            plc = DataConcentrator.DataConcentrator.PLC;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
