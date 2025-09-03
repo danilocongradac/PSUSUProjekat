@@ -52,6 +52,15 @@ namespace ScadaGUI
 
         private void LoadTagsFromDatabase()
         {
+            int? selectedTagId = null;
+            int selectedIndex = -1;
+
+            if (dgTags.SelectedItem is Tag selected)
+            {
+                selectedTagId = selected.Id;
+                selectedIndex = dgTags.SelectedIndex;
+            }
+
             using (var db = new ContextClass())
             {
                 var sortedTags = db.Tags
@@ -59,15 +68,31 @@ namespace ScadaGUI
                     .OrderBy(t => t.Type == TagType.DI ? 0 :
                                   t.Type == TagType.DO ? 1 :
                                   t.Type == TagType.AI ? 2 : 3)
+                    .ThenBy(t => t.Name)
                     .ToList();
 
-                tags.Clear();                          
+                tags.Clear();
                 foreach (var tag in sortedTags)
+                    tags.Add(tag);
+            }
+
+            if (selectedTagId.HasValue)
+            {
+                var restoredTag = tags.FirstOrDefault(t => t.Id == selectedTagId.Value);
+                if (restoredTag != null)
                 {
-                    tags.Add(tag);                     
+                    dgTags.SelectedItem = restoredTag;
+
+                }
+                else if (selectedIndex >= 0 && selectedIndex < dgTags.Items.Count)
+                {
+                    dgTags.SelectedIndex = selectedIndex;
+                    dgTags.ScrollIntoView(dgTags.Items[selectedIndex]);
                 }
             }
         }
+
+
 
         private void InitializeOutputs()
         {
@@ -175,19 +200,45 @@ namespace ScadaGUI
             {
                 using (var db = new ContextClass())
                 {
-                    db.Tags.Attach(selectedTag);
-                    db.Tags.Remove(selectedTag);
-                    db.SaveChanges();
+                    // Učitaj tag zajedno sa njegovim alarmima
+                    var tagToDelete = db.Tags
+                                        .Include("Alarms")
+                                        .FirstOrDefault(t => t.Id == selectedTag.Id);
+
+                    if (tagToDelete != null)
+                    {
+                        // Izvadi listu ID-eva alarm-a
+                        var alarmIds = tagToDelete.Alarms.Select(al => al.Id).ToList();
+
+                        // Obriši sve aktivne ili neaktivne ActivatedAlarms koji su vezani za ove alarme
+                        var activatedToDelete = db.ActivatedAlarms
+                            .Where(a => alarmIds.Contains(a.AlarmId));
+
+                        db.ActivatedAlarms.RemoveRange(activatedToDelete);
+
+                        // Obriši sve alarme vezane za tag
+                        db.Alarms.RemoveRange(tagToDelete.Alarms);
+
+                        // Obriši tag
+                        db.Tags.Remove(tagToDelete);
+
+                        db.SaveChanges();
+                    }
                 }
 
+                // Osvježi prikaz
                 LoadTagsFromDatabase();
                 selectedTag = null;
+
+                MessageBox.Show("Tag i svi povezani alarmi uspešno obrisani!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Greška: {ex.Message}");
             }
         }
+
+
 
         private void dgTags_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -210,8 +261,6 @@ namespace ScadaGUI
         {
             Application.Current.Dispatcher.Invoke(() => {  
                 LoadTagsFromDatabase();
-                dgTags.ItemsSource = null;
-                dgTags.ItemsSource = tags;
             });
         }
 
