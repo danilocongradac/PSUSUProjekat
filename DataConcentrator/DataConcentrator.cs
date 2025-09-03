@@ -33,39 +33,42 @@ namespace DataConcentrator
 
             ValueChanged?.Invoke(this, EventArgs.Empty);
 
-
-            foreach (var alarm in tag.Alarms)
+            if(tag.Alarms != null)
             {
-                if ((alarm.Type == AlarmType.Above && (double)tag.Value > alarm.Limit) ||
-                    (alarm.Type == AlarmType.Below && (double)tag.Value < alarm.Limit))
+                foreach (var alarm in tag.Alarms)
                 {
-                    var activated = new ActivatedAlarm
+                    if ((alarm.Type == AlarmType.Above && (double)tag.Value > alarm.Limit) ||
+                        (alarm.Type == AlarmType.Below && (double)tag.Value < alarm.Limit))
                     {
-                        AlarmId = alarm.Id,
-                        TagName = tag.Name,
-                        Timestamp = DateTime.Now,
-                        Type = Convert.ToString(alarm.Type),
-                        Limit = alarm.Limit,
-                        Value = tag.Value,
-                        Message = alarm.Message,
-                        Active = true
-                    };
-
-                    using (var db = new ContextClass())
-                    {
-                        bool alreadyActive = db.ActivatedAlarms
-                            .Any(a => a.AlarmId == alarm.Id && a.TagName == tag.Name && a.Active);
-
-                        if (!alreadyActive)
+                        var activated = new ActivatedAlarm
                         {
-                            db.ActivatedAlarms.Add(activated);
-                            db.SaveChanges();
-                            AlarmOccurred?.Invoke(this, activated);
-                        }
+                            AlarmId = alarm.Id,
+                            TagName = tag.Name,
+                            Timestamp = DateTime.Now,
+                            Type = Convert.ToString(alarm.Type),
+                            Limit = alarm.Limit,
+                            Value = tag.Value,
+                            Message = alarm.Message,
+                            Active = true
+                        };
 
+                        using (var db = new ContextClass())
+                        {
+                            bool alreadyActive = db.ActivatedAlarms
+                                .Any(a => a.AlarmId == alarm.Id && a.TagName == tag.Name && a.Active);
+
+                            if (!alreadyActive)
+                            {
+                                db.ActivatedAlarms.Add(activated);
+                                db.SaveChanges();
+                                AlarmOccurred?.Invoke(this, activated);
+                            }
+
+                        }
                     }
                 }
             }
+            
         }
 
         public void ForceTagValue(Tag tag, object newValue)

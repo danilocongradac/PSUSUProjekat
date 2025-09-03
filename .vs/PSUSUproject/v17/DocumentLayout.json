@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{024884F0-496F-4426-A0CE-45FF39AE24A6}|DataConcentrator\\DataConcentrator.csproj|c:\\users\\danilo\\documents\\github\\psusuprojekat\\dataconcentrator\\dataconcentrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{024884F0-496F-4426-A0CE-45FF39AE24A6}|DataConcentrator\\DataConcentrator.csproj|solutionrelative:dataconcentrator\\dataconcentrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|c:\\users\\danilo\\documents\\github\\psusuprojekat\\scadagui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|solutionrelative:scadagui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{024884F0-496F-4426-A0CE-45FF39AE24A6}|DataConcentrator\\DataConcentrator.csproj|c:\\users\\danilo\\documents\\github\\psusuprojekat\\dataconcentrator\\dataconcentrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{024884F0-496F-4426-A0CE-45FF39AE24A6}|DataConcentrator\\DataConcentrator.csproj|solutionrelative:dataconcentrator\\dataconcentrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|c:\\users\\danilo\\documents\\github\\psusuprojekat\\scadagui\\tagdetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6C18285-8FF8-4C84-8FDD-2BB92D74B554}|ScadaGUI\\ScadaGUI.csproj|solutionrelative:scadagui\\tagdetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,33 +21,46 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 421,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 494,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "DataConcentrator.cs",
               "DocumentMoniker": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\DataConcentrator\\DataConcentrator.cs",
               "RelativeDocumentMoniker": "DataConcentrator\\DataConcentrator.cs",
               "ToolTip": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\DataConcentrator\\DataConcentrator.cs",
               "RelativeToolTip": "DataConcentrator\\DataConcentrator.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAYwFMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAYwEQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T10:30:49.188Z",
+              "WhenOpened": "2025-09-03T11:06:02.847Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "TagDetailsWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\TagDetailsWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ScadaGUI\\TagDetailsWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\TagDetailsWindow.xaml.cs",
+              "RelativeToolTip": "ScadaGUI\\TagDetailsWindow.xaml.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAowIkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T11:31:26.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "ScadaGUI\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Danilo\\Documents\\GitHub\\PSUSUProjekat\\ScadaGUI\\MainWindow.xaml.cs",
               "RelativeToolTip": "ScadaGUI\\MainWindow.xaml.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAAwEUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAkwG4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T10:31:17.764Z",
+              "WhenOpened": "2025-09-03T11:28:29.077Z",
               "EditorCaption": ""
             }
           ]
