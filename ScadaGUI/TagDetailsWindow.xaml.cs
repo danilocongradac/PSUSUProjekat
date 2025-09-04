@@ -1,12 +1,13 @@
 ﻿using DataConcentrator;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
-using System.Linq;
+using System.Windows.Documents;
 
 
 namespace ScadaGUI
@@ -35,7 +36,18 @@ namespace ScadaGUI
                 return;
             }
 
-            txtTagInfo.Text = $"Tag: {selectedTag.Name} ({selectedTag.Type}) - {selectedTag.Description}, IO: {selectedTag.IOAddress}, Vrednost: {selectedTag.Value}";
+            txtTagInfo.Inlines.Clear();
+            txtTagInfo.Inlines.Add(new Run("📌 Tag: ") { FontWeight = FontWeights.Bold });
+            txtTagInfo.Inlines.Add($"{selectedTag.Name} ({selectedTag.Type})\n");
+
+            txtTagInfo.Inlines.Add(new Run("📝 Description: ") { FontWeight = FontWeights.Bold });
+            txtTagInfo.Inlines.Add($"{selectedTag.Description}\n");
+
+            txtTagInfo.Inlines.Add(new Run("🔌 IO address: ") { FontWeight = FontWeights.Bold });
+            txtTagInfo.Inlines.Add($"{selectedTag.IOAddress}\n");
+
+            txtTagInfo.Inlines.Add(new Run("📊 Value: ") { FontWeight = FontWeights.Bold });
+            txtTagInfo.Inlines.Add($"{selectedTag.Value}");
 
             LoadExtraProps();
 

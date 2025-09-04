@@ -36,7 +36,7 @@ namespace DataConcentrator
         public TagType Type { get; set; }
         public List<Alarm> Alarms { get; set; }
         public double Value { get; set; }
-        
+
         [NotMapped]
         public Dictionary<TagProperty, object> ExtraProperties { get; set; }
 
@@ -47,6 +47,21 @@ namespace DataConcentrator
             set => ExtraProperties = string.IsNullOrEmpty(value)
                 ? new Dictionary<TagProperty, object>()
                 : JsonSerializer.Deserialize<Dictionary<TagProperty, object>>(value);
+        }
+
+        [NotMapped]
+        public string DisplayValue
+        {
+            get
+            {
+                string unit = "";
+                if (ExtraProperties != null && ExtraProperties.ContainsKey(TagProperty.units))
+                {
+                    unit = ExtraProperties[TagProperty.units]?.ToString();
+                }
+
+                return $"{Value} {unit}".Trim();
+            }
         }
 
 

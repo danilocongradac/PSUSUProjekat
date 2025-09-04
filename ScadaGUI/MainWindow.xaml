@@ -18,7 +18,8 @@
                     <DataGridTextColumn Header="Ime" Binding="{Binding Name}" Width="2*"/>
                     <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="4*"/>
                     <DataGridTextColumn Header="IO Adresa" Binding="{Binding IOAddress}" Width="*"/>
-                    <DataGridTextColumn Header="Vrednost" Binding="{Binding Value}" Width="*"/>
+                    <DataGridTextColumn Header="Vrednost" Binding="{Binding DisplayValue}" Width="*"/>
+
                 </DataGrid.Columns>
             </DataGrid>
 
